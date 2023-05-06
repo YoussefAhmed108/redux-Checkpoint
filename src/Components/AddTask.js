@@ -15,13 +15,14 @@ const AddTask = props =>{
             title,
             done : false
         }
+        setTitle('')
         dispatch(addTask(task))    
     }
     return (
         <div className='rectangle'>
             + Add Task
-            <input type="text" onChange={e => setTitle(e.target.value)}/>
-            <button  onClick={handleSubmit}></button> 
+            <input type="text" onChange={e => setTitle(e.target.value)} value={title}/>
+            <button type="button" class="btn btn-success" onClick={handleSubmit}>Add Task</button> 
         </div>
     )
 }

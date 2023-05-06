@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { checkTask, uncheckTask } from "../Actions/action";
+import { checkTask, deleteTask, uncheckTask } from "../Actions/action";
 import"../App.css";
 import { useDispatch } from "react-redux";
+import { Button } from "bootstrap";
 const Task = ({index,task}) =>{
 
     const circleStyle = {
@@ -12,8 +13,12 @@ const Task = ({index,task}) =>{
         backgroundColor: task.done ? "green" : "red",
         cursor:"pointer"
     };
-    const [checked,setChecked] = useState(true);
+    const [checked,setChecked] = useState(false);
     const dispatch = useDispatch();
+    const handleClick = (e) => {
+      e.preventDefault()
+      dispatch(deleteTask(task))    
+  }
     const check = () =>{
       if(!checked){
         setChecked(true)
@@ -28,6 +33,7 @@ const Task = ({index,task}) =>{
         <div className="rectangle">
           <div onClick={check} style={circleStyle}></div>
           <div className="text"> {task.title}</div>
+          <button type="button" class="btn btn-danger" onClick={handleClick}>Delete</button>
         </div>
       );
 }

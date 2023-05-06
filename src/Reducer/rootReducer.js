@@ -38,9 +38,11 @@ export const rootReducer = (state = initialState, action) => {
                 tasks: [...state.tasks, action.payload]
             }
         case DELETE_TASK:
-            return {
-                tasks: state.tasks.filter(task => task.id !== action.payload.id)
-            }
+            const deleted = state.tasks.filter(task => task.id !== action.payload.id)
+            base.alltasks = deleted
+            return {tasks:deleted}
+                
+            
         case CHECK_TASK:
             const newTasks =  state.tasks.map(task => {
                   if(task.id == action.payload.id){

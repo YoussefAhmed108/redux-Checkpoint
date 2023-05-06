@@ -12,6 +12,13 @@ export const addTask = newTask => {
     }
 }
 
+export const deleteTask = newTask => {
+    return {
+        type: DELETE_TASK,
+        payload: newTask
+    }
+}
+
 export const checkTask = newPost => {
     return {
         type: CHECK_TASK,
